@@ -11,5 +11,6 @@
   - [`Predicate<T>`](https://docs.microsoft.com/en-us/dotnet/api/system.predicate-1?view=netframework-4.8), 
   - [`Converter<TInput,TOutput>`](https://docs.microsoft.com/en-us/dotnet/api/system.converter-2?view=netframework-4.8),
   - [`Comparison<T>`](https://docs.microsoft.com/en-us/dotnet/api/system.comparison-1?view=netframework-4.8)). 
+
 При реализации "методов-двойников" использовать вызовы методов на интерфейсах (Filter, SortBy) и наоборот (Transform).
 - Проверить работу разработанных методов, используя различные типы данных.
