@@ -8,7 +8,7 @@ namespace PseudoEnumerable
         public static IEnumerable<TSource> Filter<TSource>(this IEnumerable<TSource> source,
             IPredicate<TSource> predicate)
         {
-            // Implementation Day 13 Task 1 (ArrayExtension)
+            // Implementation Day 9. 03.10.2019 Tasks 1-2 (ArrayExtension)
             throw new NotImplementedException();
         }
 
@@ -22,7 +22,7 @@ namespace PseudoEnumerable
         public static IEnumerable<TSource> SortBy<TSource>(this IEnumerable<TSource> source,
             IComparer<TSource> comparer)
         {
-            // Implementation Day 13 Task 1 (ArrayExtension)
+            // Implementation Day 9. 03.10.2019 Tasks 1-2 (ArrayExtension)
             throw new NotImplementedException();
         }
 
@@ -36,14 +36,14 @@ namespace PseudoEnumerable
         public static IEnumerable<TResult> Transform<TSource, TResult>(this IEnumerable<TSource> source,
             Converter<TSource, TResult> transformer)
         {
-            // Implementation Day 13 Task 1 (ArrayExtension)
+            // Implementation Day 9. 03.10.2019 Tasks 1-2 (ArrayExtension)
             throw new NotImplementedException();
         }
 
-        public static IEnumerable<TSource> SortBy<TSource>(this IEnumerable<TSource> source,
+        public static IEnumerable<TSource> OrderAccordingTo<TSource>(this IEnumerable<TSource> source,
             Comparison<TSource> comparer)
         {
-            // Call EnumerableExtension.SortBy with interface
+            // Call EnumerableExtension.OrderAccordingTo with interface
             throw new NotImplementedException();
         }
     }
