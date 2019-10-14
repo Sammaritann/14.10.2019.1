@@ -51,7 +51,7 @@ namespace PseudoEnumerable
             {
                 throw new ArgumentNullException($"{nameof(comparer)} should not be null");
             }
-
+    
             List<TSource> tempList = new List<TSource>(source);
             tempList.Sort(comparer);
             
@@ -86,7 +86,7 @@ namespace PseudoEnumerable
         public static IEnumerable<TSource> OrderAccordingTo<TSource>(this IEnumerable<TSource> source,
             Comparison<TSource> comparer)
         {
-          return OrderAccordingTo(source, new ComparerAdapter<TSource>(comparer));
+          return OrderAccordingTo(source,Comparer<TSource>.Create(comparer));
         }
 
         #endregion
