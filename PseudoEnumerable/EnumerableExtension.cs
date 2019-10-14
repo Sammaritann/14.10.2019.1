@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PseudoEnumerable.Adapter;
 using PseudoEnumerable.Interfaces;
+using System;
+using System.Collections.Generic;
 
 namespace PseudoEnumerable
 {
@@ -11,47 +12,88 @@ namespace PseudoEnumerable
         public static IEnumerable<TSource> Filter<TSource>(this IEnumerable<TSource> source,
             IPredicate<TSource> predicate)
         {
-            // Add implementation method Filter from class ArrayExtension (Homework Day 9. 03.10.2019 Tasks 1-2)
-            throw new NotImplementedException();
+            if (source is null)
+            {
+                throw new ArgumentNullException($"{nameof(source)} should not be null");
+            }
+
+            if (predicate is null)
+            {
+                throw new ArgumentNullException($"{nameof(predicate)} should not be null");
+            }
+
+            List<TSource> result = new List<TSource>();
+
+
+            foreach (var item in source)
+            {
+                if (predicate.IsMatching(item))
+                {
+                    result.Add(item);
+                }
+
+            }
+
+            return result;
         }
 
         public static IEnumerable<TResult> Transform<TSource, TResult>(this IEnumerable<TSource> source,
             ITransformer<TSource, TResult> transformer)
         {
-            // Call EnumerableExtension.Transform with delegate
-            throw new NotImplementedException();
+            return Transform(source, transformer.Transform);          
         }
 
         public static IEnumerable<TSource> OrderAccordingTo<TSource>(this IEnumerable<TSource> source,
             IComparer<TSource> comparer)
         {
-            // Add implementation method OrderAccordingTo from class ArrayExtension (Homework Day 9. 03.10.2019 Tasks 1-2)
-            throw new NotImplementedException();
+            if (source is null)
+            {
+                throw new ArgumentNullException($"{nameof(source)} should not be null");
+            }
+
+            if (comparer is null)
+            {
+                throw new ArgumentNullException($"{nameof(comparer)} should not be null");
+            }
+
+            List<TSource> tempList = new List<TSource>(source);
+            tempList.Sort(comparer);
+            
+            return tempList;
         }
 
         #endregion
-        
+
         #region Implementation vs delegates
 
         public static IEnumerable<TSource> Filter<TSource>(this IEnumerable<TSource> source,
             Predicate<TSource> predicate)
         {
-            // Call EnumerableExtension.Filter with interface
-            throw new NotImplementedException();
+           return  Filter(source, new PredicateAdapter<TSource>(predicate));
         }
 
         public static IEnumerable<TResult> Transform<TSource, TResult>(this IEnumerable<TSource> source,
             Converter<TSource, TResult> transformer)
         {
-            // Implementation logic vs delegate Converter here 
-            throw new NotImplementedException();
+            if (transformer is null)
+            {
+                throw new ArgumentNullException($"{nameof(transformer)} should not be null");
+            }
+
+            List<TResult> result = new List<TResult>();
+
+            foreach (var item in source)
+            {
+                result.Add(transformer(item));
+            }
+            return result;
+
         }
 
         public static IEnumerable<TSource> OrderAccordingTo<TSource>(this IEnumerable<TSource> source,
             Comparison<TSource> comparer)
         {
-            // Call EnumerableExtension.OrderAccordingTo with interface
-            throw new NotImplementedException();
+          return OrderAccordingTo(source, new ComparerAdapter<TSource>(comparer));
         }
 
         #endregion
