@@ -22,19 +22,15 @@ namespace PseudoEnumerable
                 throw new ArgumentNullException($"{nameof(predicate)} should not be null");
             }
 
-            List<TSource> result = new List<TSource>();
-
-
             foreach (var item in source)
             {
                 if (predicate.IsMatching(item))
                 {
-                    result.Add(item);
+                    yield return item;
                 }
 
             }
 
-            return result;
         }
 
         public static IEnumerable<TResult> Transform<TSource, TResult>(this IEnumerable<TSource> source,
@@ -80,13 +76,10 @@ namespace PseudoEnumerable
                 throw new ArgumentNullException($"{nameof(transformer)} should not be null");
             }
 
-            List<TResult> result = new List<TResult>();
-
             foreach (var item in source)
             {
-                result.Add(transformer(item));
+                yield return transformer(item);
             }
-            return result;
 
         }
 
