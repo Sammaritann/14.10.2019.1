@@ -1,5 +1,4 @@
-﻿using PseudoEnumerable.Adapter;
-using PseudoEnumerable.Interfaces;
+﻿using PseudoEnumerable.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -90,5 +89,18 @@ namespace PseudoEnumerable
         }
 
         #endregion
+        private class PredicateAdapter<T> : IPredicate<T>
+        {
+            Predicate<T> predicate;
+
+            public PredicateAdapter(Predicate<T> predicate)
+            {
+                this.predicate = predicate;
+            }
+            public bool IsMatching(T item)
+            {
+                return predicate(item);
+            }
+        }
     }
 }
